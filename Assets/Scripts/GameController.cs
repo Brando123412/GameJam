@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] int valueEnergi = 100;
+    [SerializeField] int valueEnergy = 100;
     [SerializeField] int valueOxygen = 100;
     [SerializeField] int timeLowerOxygen;
     private void Awake()
     {
-
+        Invoke("InicialitateGame",0);
     }
     private void Start()
     {
@@ -27,8 +27,23 @@ public class GameController : MonoBehaviour
     public void InicialitateGame() {
         InvokeRepeating("CurremtTime",0, timeLowerOxygen);
     }
+    public void EnergyUpdate(int value)
+    {
+        valueEnergy -= value;
+    }
+    public void OxygenUpdate(int value)
+    {
+
+    }
     public void CurremtTime()
     {
-        print("gaa");
+        valueEnergy--;
+        if(valueEnergy == 50) {
+            print("Te queda la mitad de oxigeno");
+        }
+        if (valueEnergy == 15)
+        {
+            print("Falta Oxigeno");
+        }
     }
 }
